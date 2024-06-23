@@ -1,0 +1,11 @@
+# Ignore Docker related files
+*.log
+*.pid
+*.swp
+*.temp
+*.tmp
+.dockerignore
+
+# Ignore system files
+.DS_Store
+Thumbs.db
