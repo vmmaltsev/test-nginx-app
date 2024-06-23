@@ -2,10 +2,10 @@
 FROM nginx:alpine
 
 # Копируем наш конфигурационный файл nginx в контейнер
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Копируем статические файлы в директорию, обслуживаемую nginx
-COPY html /usr/share/nginx/html
+COPY content /usr/share/nginx/html
 
 # Открываем порт 80 для доступа
 EXPOSE 80
