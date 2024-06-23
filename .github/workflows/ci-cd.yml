@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - main
-  create:
-    tags:
-      - 'v*.*.*'
+  tags:
+    - 'v*.*.*'
 
 jobs:
   build:
@@ -58,10 +57,13 @@ jobs:
       with:
         version: 'v1.21.0'
 
+    - name: Create kube directory
+      run: mkdir -p $HOME/.kube
+
     - name: Set up Kubeconfig
       run: echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f /home/ubuntu/test-nginx-app/k8s/k8s-manifest.yaml
-        kubectl apply -f /home/ubuntu/test-nginx-app/k8s/service-nodeport.yaml
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
